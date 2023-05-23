@@ -1,13 +1,6 @@
 "use client";
 
-import {
-  FC,
-  PropsWithChildren,
-  ReactNode,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import { FC, PropsWithChildren, ReactNode, useMemo, useState } from "react";
 import { DateTime } from "luxon";
 import Link from "next/link";
 import { cx } from "@/utils/classname.utils";
@@ -23,14 +16,6 @@ const HabitTrackerCalendarComponent: FC<
   const [month, setMonth] = useState<number>(DateTime.now().month);
   const monthYearDisplay = DateTime.local(year, month).toFormat("MMM yyyy");
 
-  useEffect(() => {
-    fetch("http://localhost:3000/api/habits?date=2023-05-01")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      });
-  }, []);
-
   const calendarComponent = useMemo(() => {
     const day1 = DateTime.local(year, month, 1).weekday;
     let date = DateTime.local(year, month, 1).minus({
@@ -41,7 +26,6 @@ const HabitTrackerCalendarComponent: FC<
     do {
       const dayCols: ReactNode[] = [];
       for (let i = 0; i < 7; i++) {
-        const dateClone = DateTime.fromMillis(date.toMillis());
         dayCols.push(
           <Link
             key={i}

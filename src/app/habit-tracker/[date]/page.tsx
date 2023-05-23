@@ -1,4 +1,5 @@
 import { getHabitList } from "@/api/habits";
+import { HabitDetailPage } from "@/app/habit-tracker/[date]/habitDetail.page";
 
 type HabitTrackerDateProps = {
   params: {
@@ -9,11 +10,5 @@ type HabitTrackerDateProps = {
 export default async ({ params }: HabitTrackerDateProps) => {
   const data = await getHabitList(params.date);
 
-  return (
-    <>
-      {data.map((x: string) => (
-        <h1 key={x}>{x}</h1>
-      ))}
-    </>
-  );
+  return <HabitDetailPage date={params.date} initialHabits={data} />;
 };

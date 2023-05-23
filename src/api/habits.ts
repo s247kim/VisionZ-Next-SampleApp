@@ -1,3 +1,4 @@
+import "server-only";
 import dbPool from "@/utils/mysql.utils";
 
 export const getHabitList = async (date: string): Promise<string[]> => {
