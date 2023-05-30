@@ -5,7 +5,7 @@ export default mysql
   .createPool({
     host: "127.0.0.1",
     user: "VisionZ_Express",
-    password: "password",
+    password: process.env.DB_PASSWORD,
     database: "VisionZ_Practice",
   })
   .promise();
